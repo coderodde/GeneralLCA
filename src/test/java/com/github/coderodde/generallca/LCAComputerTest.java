@@ -55,5 +55,5 @@ public class LCAComputerTest {
                      lcaComputer.computeLowestCommonAncestor(
                              tree,
                              "D", "H", "G", "F"));
-    }    
+    }
 }
