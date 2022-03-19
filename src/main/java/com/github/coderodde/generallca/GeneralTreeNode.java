@@ -1,5 +1,7 @@
 package com.github.coderodde.generallca;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,6 +16,7 @@ public final class GeneralTreeNode {
     private final String name;
     private final int depth;
     private GeneralTreeNode parent;
+    private final List<GeneralTreeNode> children = new ArrayList<>();
     
     GeneralTreeNode(String name, int depth, GeneralTreeNode parent) {
         this.name = name;
@@ -35,6 +38,11 @@ public final class GeneralTreeNode {
     
     public void setParent(GeneralTreeNode parent) {
         this.parent = parent;
+        parent.children.add(this);
+    }
+    
+    public List<GeneralTreeNode> getChildren() {
+        return children;
     }
     
     @Override

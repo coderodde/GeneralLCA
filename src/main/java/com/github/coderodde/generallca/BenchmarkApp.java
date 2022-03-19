@@ -6,15 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- *
- * @author rodde
- */
 public final class BenchmarkApp {
     
     private static final int NUMBER_OF_TREE_NODES = 1000_000;
     private static final int NUMBER_OF_QUERIES = 100_000;
-    private static final int MAXIMUM_QUERY_LENGTH = 30;
+    private static final int MAXIMUM_QUERY_LENGTH = 50;
     
     private final long seed;
     private final GeneralTree tree = new GeneralTree();

@@ -41,4 +41,8 @@ public final class GeneralTree {
         
         treeNodeMap.put(childNodeName, childNode);
     }
+    
+    public GeneralTreeNode getRoot() {
+        return root;
+    }
 }

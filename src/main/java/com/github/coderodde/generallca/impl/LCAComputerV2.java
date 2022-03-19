@@ -6,8 +6,14 @@ import com.github.coderodde.generallca.LCAComputer;
 import java.util.Arrays;
 
 /**
- *
- * @author rodde
+ * 
+ * This class provides a method for computing general lowest common ancestors.
+ * The algorithm moves all the query nodes to the level of the shallowest node,
+ * and keeps moving all the nodes until they all visit a single node, which is
+ * a LCA.
+ * 
+ * @author Rodion "rodde" Efremov
+ * @version 1.6 (Mar 19, 2022)
  */
 public final class LCAComputerV2 implements LCAComputer {
 
