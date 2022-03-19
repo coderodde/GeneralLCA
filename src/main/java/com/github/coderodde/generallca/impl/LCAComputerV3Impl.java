@@ -49,8 +49,7 @@ public class LCAComputerV3Impl {
     
     private RMQTable table;
     
-    public Gener
-        alTreeNode preprocess(GeneralTree tree) {
+    public GeneralTreeNode preprocess(GeneralTree tree) {
         WalkData walkData = getWalkData(tree);
         List<String> labels = walkData.labels;
         List<Integer> depths = walkData.depths;
@@ -114,7 +113,16 @@ public class LCAComputerV3Impl {
     private static WalkData getWalkData(GeneralTree tree) {
         WalkData walkData = new WalkData();
         walk(tree.getRoot(), walkData);
+        loadDepthDeltas(walkData);
         return walkData;
+    }
+    
+    private static void loadDepthDeltas(WalkData walkData) {
+        for (int i = 0; i < walkData.depths.size() - 1; ++i) {
+            int depth1 = walkData.depths.get(i);
+            int depth2 = walkData.depths.get(i + 1);
+            walkData.depthDeltas.add(depth1 < depth2 ? 1 : 0);
+        }
     }
     
     private static void walk(GeneralTreeNode node, WalkData walkData) {
