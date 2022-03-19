@@ -12,13 +12,12 @@ import java.util.Random;
  */
 public final class BenchmarkApp {
     
-    private static final int NUMBER_OF_TREE_NODES = 10_000;
-    private static final int NUMBER_OF_QUERIES = 1000;
-    private static final int MAXIMUM_QUERY_LENGTH = 6;
+    private static final int NUMBER_OF_TREE_NODES = 1000_000;
+    private static final int NUMBER_OF_QUERIES = 100_000;
+    private static final int MAXIMUM_QUERY_LENGTH = 30;
     
     private final long seed;
     private final GeneralTree tree = new GeneralTree();
-    private final Random random = new Random();
     private final LCAComputer lcaComputerV1 = new LCAComputerV1();
     private final LCAComputer lcaComputerV2 = new LCAComputerV2();
     
@@ -65,7 +64,7 @@ public final class BenchmarkApp {
         startTime = System.currentTimeMillis();
         
         for (int i = 0; i < NUMBER_OF_QUERIES; ++i) {
-            result1.add(
+            result2.add(
                     lcaComputerV2.computeLowestCommonAncestor(
                             tree,
                             queries[i]));
@@ -81,10 +80,13 @@ public final class BenchmarkApp {
                             + " in " 
                             + duration 
                             + " milliseconds.");
+            
+            System.out.println("Algorithms agree: " + result1.equals(result2));
         }
     }
     
     private void buildTree() {
+        Random random = new Random(this.seed);
         List<GeneralTreeNode> createdNodeList = new ArrayList<>();
         tree.addRootNode("Root");
         GeneralTreeNode root = tree.getNode("Root");
@@ -110,6 +112,7 @@ public final class BenchmarkApp {
     }
     
     private String[] generateQuery() {
+        Random random = new Random(this.seed);
         int queryLength = random.nextInt(MAXIMUM_QUERY_LENGTH) + 1;
         String[] query = new String[queryLength];
         
