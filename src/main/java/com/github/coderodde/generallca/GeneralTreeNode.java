@@ -21,7 +21,7 @@ public final class GeneralTreeNode {
         this.parent = parent;
     }
     
-    int getDepth() {
+    public int getDepth() {
         return depth;
     }
     
